@@ -87,7 +87,8 @@ int main(int argc, char *argv[]){
             std::string temp_busid(busid);
 
             if(i > 0) busid_list.append(",");
-            busid_list.append(temp_busid.substr(8,2));    
+//            busid_list.append(temp_busid.substr(8,2));
+            busid_list.append(temp_busid);
 
 		}
 
