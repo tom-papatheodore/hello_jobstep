@@ -1,5 +1,5 @@
 NVCC      = nvcc
-NVFLAGS   = -arch=sm_70 -Xcompiler -fopenmp
+NVFLAGS   = -arch=sm_80 -Xcompiler -fopenmp
 
 INCLUDES  = -I${I_MPI_ROOT}/include
 LIBRARIES = -L${I_MPI_ROOT}/lib/release -lmpi

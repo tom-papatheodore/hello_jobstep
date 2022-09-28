@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#SBATCH -N 1
+#SBATCH -t 10
+#SBATCH -p eval-gpu
+#SBATCH --exclusive
+
+source ./setup_environment.sh
+
+export OMP_NUM_THREADS=6
+export OMP_PROC_BIND=close
+export OMP_PLACES=cores
+
+mpirun -np 8 --bind-to core --map-by ppr:4:numa:pe=6 -x PATH -x LD_LIBRARY_PATH -x FI_EFA_USE_DEVICE_RDMA=1 -x FI_EFA_RUNT_SIZE=0 ./hello_jobstep | sort
