@@ -1,0 +1,16 @@
+NVCC      = nvcc
+NVFLAGS   = -std=c++11 -arch=sm_80 -Xcompiler -fopenmp
+
+INCLUDES  = -I${MPI_HOME}/include
+LIBRARIES = -L${MPI_HOME}/lib -lmpi
+
+hello_jobstep: hello_jobstep.o
+	${NVCC} ${NVFLAGS} ${LIBRARIES} hello_jobstep.o -o hello_jobstep
+
+hello_jobstep.o: hello_jobstep.cu
+	${NVCC} ${NVFLAGS} ${INCLUDES} -c hello_jobstep.cu
+
+.PHONY: clean
+
+clean:
+	rm -f hello_jobstep *.o
